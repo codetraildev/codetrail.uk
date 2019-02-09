@@ -1,9 +1,9 @@
 image: alpine:latest
-tags:
-  - docker
 
 pages:
   stage: deploy
+  tags:
+    - docker
   script:
   - echo 'Nothing to do...'
   artifacts:
