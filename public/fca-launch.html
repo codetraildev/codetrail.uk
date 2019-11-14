@@ -37,8 +37,10 @@
 
         var time = moment('2019-11-28 12:00:00')
         function updateClock() {
-            var duration = moment.duration(time.diff(moment()));
-            var clock = leftFillNum(duration.days())
+            var diff = time.diff(moment());
+            var duration = moment.duration(diff);
+            var clock = (diff < 0 ? '+' : '-')
+                + leftFillNum(Math.abs(duration.days()))
                 + ':' + leftFillNum(Math.abs(duration.hours()))
                 + ':' + leftFillNum(Math.abs(duration.minutes()))
                 + ':' + leftFillNum(Math.abs(duration.seconds()));
