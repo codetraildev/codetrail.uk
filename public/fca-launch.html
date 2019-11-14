@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>FCA Launch Countdown</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@1.0.0-beta.4/dist/tailwind.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
+    <style>
+        @font-face {
+            font-family: 'Digital-7 Mono';
+            src: url('Digital-7Mono.woff2') format('woff2'),
+                url('Digital-7Mono.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            background-color: black;
+        }
+        h1 {
+            font-family: 'Digital-7 Mono';
+            color: orange;
+            font-size: 15vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="h-screen w-screen flex items-center content-center">
+        <div class="flex flex-col items-center m-auto">
+            <h1 id="countdown">00:00:00:00</h1>
+        </div>
+    </div>
+    <script>
+        function leftFillNum(num) {
+            return num.toString().padStart(2, 0);
+        }
+
+        var time = moment('2019-11-28 12:00:00')
+        function updateClock() {
+            var duration = moment.duration(time.diff(moment()));
+            var clock = leftFillNum(duration.days())
+                + ':' + leftFillNum(Math.abs(duration.hours()))
+                + ':' + leftFillNum(Math.abs(duration.minutes()))
+                + ':' + leftFillNum(Math.abs(duration.seconds()));
+            document.getElementById('countdown').innerText = clock;
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
